@@ -10,6 +10,9 @@ class AddRecords extends StatefulWidget {
 class _AddRecordsState extends State<AddRecords> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(),
+      body: Text("Hehe Hello I am add records"),
+    );
   }
 }
