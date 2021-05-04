@@ -13,8 +13,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
+        canvasColor: Colors.white,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Event Planning App'),
     );
   }
 }
@@ -44,34 +45,73 @@ class _MyHomePageState extends State<MyHomePage> {
                   Padding(
                       padding: EdgeInsets.all(10.0),
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(""
-                            // "https://static.wikia.nocookie.net/shingekinokyojin/images/f/f0/Levi_Ackermann_%28Anime%29_character_image_%28850%29.png/revision/latest?cb=20210124214225"
-                            ),
+                        backgroundImage: AssetImage("assets/profile.png"),
                         radius: 40,
                       )),
                   Text(
-                    "Levi Ackerman",
+                    "Zaeema Anwar",
+                    style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    "leviackerman@attackontitan.com",
+                    "thezaeemaanwar@gmail.com",
+                    style: TextStyle(color: Colors.white),
                   )
                 ],
               ),
-              decoration: BoxDecoration(color: Colors.blue)),
+              decoration: BoxDecoration(color: Colors.deepOrange)),
           TextButton(
               onPressed: () => {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => AddRecords()))
                   },
-              child: Text("Add Records")),
+              child: Row(children: [
+                Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.deepOrange,
+                    )),
+                Text("Add Records"),
+              ])),
           TextButton(
             onPressed: () => {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => RetrieveRecords()))
             },
-            child: Text("Retrieve Records"),
+            child: Row(children: [
+              Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Icon(
+                    Icons.widgets,
+                    color: Colors.deepOrange,
+                  )),
+              Text("Retrieve Records")
+            ]),
           )
         ])),
-        body: Center());
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image(
+                image: AssetImage('assets/mobileDev.png'),
+                width: 400,
+              ),
+              Text(
+                "Event Planning App",
+                style: TextStyle(fontSize: 40, color: Colors.deepOrange),
+              ),
+              Padding(
+                padding: EdgeInsets.all(50),
+                child: Text(
+                  "This Application is a part of my flutter learning pathway. " +
+                      "In this Appliction, I have utilized routing and integrated " +
+                      "API calls to Add and Retrieve data",
+                  style: TextStyle(fontSize: 18),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
