@@ -35,11 +35,20 @@ class _RetrieveRecordsState extends State<RetrieveRecords> {
         appBar: AppBar(),
         body: Center(
             child: Column(children: [
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Event Planning Data",
+              style: TextStyle(fontSize: 20, color: Colors.deepOrange),
+            ),
+          ),
           FutureBuilder(
               future: futureEventPlanningServices,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return DataTable(
+                      headingRowColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.deepOrange),
                       columns: [
                         DataColumn(label: Text('ID')),
                         DataColumn(label: Text('Title')),
