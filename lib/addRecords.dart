@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -27,6 +26,26 @@ class _AddRecordsState extends State<AddRecords> {
         }));
     var result = jsonDecode(response.body);
     print(result);
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text(
+              "Sent Data",
+              style: TextStyle(color: Colors.deepOrange),
+            ),
+            content: Text(result['message']),
+            actions: [
+              TextButton(
+                  onPressed: () => {Navigator.pop(context)},
+                  child: Text("Okay"))
+            ],
+          );
+        });
+
+    titleController.clear();
+    descriptionController.clear();
+    typeController.clear();
   }
 
   void runAddRecord() {
@@ -48,22 +67,6 @@ class _AddRecordsState extends State<AddRecords> {
           });
     } else {
       sendRecordsData();
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Success"),
-              content: Text("The request to add event sent successfully"),
-              actions: [
-                TextButton(
-                    onPressed: () => {Navigator.pop(context)},
-                    child: Text("Okay"))
-              ],
-            );
-          });
-      titleController.clear();
-      descriptionController.clear();
-      typeController.clear();
     }
     print("hello i am added");
   }
@@ -77,6 +80,13 @@ class _AddRecordsState extends State<AddRecords> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: Image(
+                image: AssetImage("assets/accounts.png"),
+                width: 200,
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
